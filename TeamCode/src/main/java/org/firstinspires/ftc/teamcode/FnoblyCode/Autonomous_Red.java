@@ -147,6 +147,8 @@ public class Autonomous_Red extends LinearOpMode {
         //Save the current encoder values for later.
         leftEncoder = robot.leftDrive.getCurrentPosition();
         rightEncoder = robot.rightDrive.getCurrentPosition();
+        
+        //Beep boop
 
 
 
