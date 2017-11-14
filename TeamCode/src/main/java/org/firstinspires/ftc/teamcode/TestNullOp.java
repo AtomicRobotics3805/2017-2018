@@ -71,6 +71,7 @@ public class TestNullOp extends OpMode {
    */
   @Override
   public void loop() {
+    telemetry.addData("hello", "Hello ");
     telemetry.addData("Status", "Run Time: " + runtime.toString());
   }
 }
