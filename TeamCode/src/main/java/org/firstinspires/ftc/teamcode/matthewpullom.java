@@ -88,7 +88,7 @@ public class matthewpullom extends OpMode {
     double lightValue=lightSensor.getLightDetected();
 
     telemetry.addData("1", "matthew" + lightValue);
-
+//this is as comment
     if(lightValue<=.5) {
      rightMotor.setPower(.1);
       leftMotor.setPower(.09);
