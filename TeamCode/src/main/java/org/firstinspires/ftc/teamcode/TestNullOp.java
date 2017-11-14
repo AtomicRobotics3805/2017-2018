@@ -65,7 +65,7 @@ public class TestNullOp extends OpMode {
     runtime.reset();
   }
 
-  /*
+  /*poo
    * This method will be called repeatedly in a loop
    * @see com.qualcomm.robotcore.eventloop.opmode.OpMode#loop()
    */
