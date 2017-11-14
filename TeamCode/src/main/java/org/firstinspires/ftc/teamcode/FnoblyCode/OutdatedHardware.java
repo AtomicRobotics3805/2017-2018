@@ -31,13 +31,12 @@ package org.firstinspires.ftc.teamcode.FnoblyCode;
 
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.Gyroscope;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 
-public class FnoblyHardware
+public class OutdatedHardware
 {
     /* Public OpMode members. */
     public DcMotor  leftDrive   = null;
@@ -51,7 +50,7 @@ public class FnoblyHardware
     private ElapsedTime period  = new ElapsedTime();
 
     /* Constructor */
-    public FnoblyHardware() {
+    public OutdatedHardware() {
 
     }
 

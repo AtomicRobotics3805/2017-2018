@@ -37,7 +37,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 /**
  * Demonstrates empty OpMode
  */
-@Autonomous(name = "Concept: NullOp", group = "Concept")
+@Autonomous(name = "TestNullOp", group = "Concept")
 @Disabled
 public class TestNullOp extends OpMode {
 
