@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 /**
  * Created by matth on 11/3/2017.
  */
-@TeleOp(name="Robot: slowMode", group="Robot")
+@TeleOp(name="Robot: whocares", group="Robot")
 //@Disabled
 
 public class OutdatedTeleop extends OpMode{
