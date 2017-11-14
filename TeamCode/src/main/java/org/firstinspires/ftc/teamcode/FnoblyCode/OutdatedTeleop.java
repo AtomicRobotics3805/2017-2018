@@ -11,7 +11,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 @TeleOp(name="Robot: slowMode", group="Robot")
 //@Disabled
 
-public class HdriveTeleOpFinal extends OpMode{
+public class OutdatedTeleop extends OpMode{
 
     Servo grabber;
     //Servo grabber2;
@@ -20,8 +20,8 @@ public class HdriveTeleOpFinal extends OpMode{
     DcMotor rightDrive;
     DcMotor midDrive;
     DcMotor Raise;
-    final static double grabGlyph = 1;
-    final static double releaseGlyph = .52;
+    final static double grabGlyph = .85;
+    final static double releaseGlyph = .46;
     double left;
     double right;
     double slowMode = 1;
@@ -66,20 +66,19 @@ public class HdriveTeleOpFinal extends OpMode{
         leftDrive.setPower(left);
         rightDrive.setPower(right);
         telemetry.addData("Raise Position", "ticks " + Raise.getCurrentPosition());
-        telemetry.update();
         if (gamepad2.y) {
             Raise.setPower(.6);
-            Raise.setTargetPosition(3169);
+            Raise.setTargetPosition(-5228);
             //if using N20 change values
         }
 
         if (gamepad2.x) {
             Raise.setPower(.6);
-            Raise.setTargetPosition(1746);
+            Raise.setTargetPosition(-1000);
         }
 
         if(gamepad2.a) {
-            Raise.setPower(.6);
+            Raise.setPower(.4);
             Raise.setTargetPosition(0);
         }
 
@@ -87,11 +86,9 @@ public class HdriveTeleOpFinal extends OpMode{
         if (gamepad2.b) {
             grabber.setPosition(releaseGlyph);
             telemetry.addData("Grabber", "Release Glyph");
-            telemetry.update();
         } else {
             grabber.setPosition(grabGlyph);
             telemetry.addData("Grabber", "Grab Glyph");
-            telemetry.update();
         }
 
        /* if (gamepad2.a) {
@@ -118,11 +115,11 @@ public class HdriveTeleOpFinal extends OpMode{
         {
             rightDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             rightDrive.setPower(.5);
-            rightDrive.setTargetPosition(1343);
+            rightDrive.setTargetPosition(11328);
 //5664
             leftDrive.setMode(DcMotor.RunMode.RUN_TO_POSITION);
             leftDrive.setPower(.5);
-            leftDrive.setTargetPosition(-1343);
+            leftDrive.setTargetPosition(-11328);
 //5664
         }
     }
