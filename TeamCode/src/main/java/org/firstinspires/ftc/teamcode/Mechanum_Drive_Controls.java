@@ -48,7 +48,7 @@ public class Mechanum_Drive_Controls extends OpMode {
         }
         double Y1 = gamepad1.left_stick_y * scaleFactor; //Forwards/Backwards
         double X1 = -gamepad1.left_stick_x * scaleFactor; //Left/Right
-        double X2 = gamepad1.right_stick_x * scaleFactor; //Rotate
+        double X2 = -gamepad1.right_stick_x * scaleFactor; //Rotate
 
         rightFront.setPower(Y1 - X2 - X1);
         rightBack.setPower(Y1 - X2 + X1);
