@@ -32,20 +32,20 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.GyroSensor;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-/**
- * Demonstrates empty OpMode
- */
-@Autonomous(name = "TestNullOp", group = "Concept")
-@Disabled
-public class TestNullOp extends OpMode {
 
-  private ElapsedTime runtime = new ElapsedTime();
+@Autonomous(name = "TestGyro", group = "Concept")
+public class TestGyro extends OpMode {
 
-  @Override
+    GyroSensor dog;
+
   public void init() {
-    telemetry.addData("Status", "Initialized");
+    telemetry.addData("Baby oh baby", "Prepare for disappointment");
+      dog = hardwareMap.gyroSensor.get("GoodBoy");
+
   }
 
   /*
@@ -62,7 +62,7 @@ public class TestNullOp extends OpMode {
    */
   @Override
   public void start() {
-    runtime.reset();
+
   }
 
   /*poo
@@ -71,9 +71,6 @@ public class TestNullOp extends OpMode {
    */
   @Override
   public void loop() {
-    telemetry.addData("", "made change on mac 4 ");
-    telemetry.addData("Status", "Run Time: " + runtime.toString());
-    //comment made on mac5
-    //comment made of mac6
+
   }
 }
