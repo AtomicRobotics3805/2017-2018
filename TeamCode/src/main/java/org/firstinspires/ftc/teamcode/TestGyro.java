@@ -40,11 +40,11 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 @Autonomous(name = "TestGyro", group = "Concept")
 public class TestGyro extends OpMode {
 
-    GyroSensor dog;
+    GyroSensor cat;
 
   public void init() {
     telemetry.addData("Baby oh baby", "Prepare for disappointment");
-      dog = hardwareMap.gyroSensor.get("GoodBoy");
+      cat = hardwareMap.gyroSensor.get("SoftKitty");
 
   }
 
