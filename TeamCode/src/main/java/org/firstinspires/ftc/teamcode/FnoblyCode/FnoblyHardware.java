@@ -44,7 +44,7 @@ public class FnoblyHardware
     public DcMotor  topLeftDrive   = null;
     public DcMotor  topRightDrive  = null;
     public DcMotor  bottomRightDrive  = null;
-    public DcMotor  bottomLefttDrive  = null;
+    public DcMotor  bottomLeftDrive  = null;
     //public DcMotor  strafer = null;
     public Servo arm = null;
     public ColorSensor sensorColor;
@@ -67,24 +67,28 @@ public class FnoblyHardware
         sensorColor = hwMap.colorSensor.get("sensor");
         topLeftDrive  = hwMap.dcMotor.get("top_left_drive");
         topRightDrive = hwMap.dcMotor.get("top_right_drive");
-        bottomLefttDrive = hwMap.dcMotor.get("bottom_left_drive");
+        bottomLeftDrive = hwMap.dcMotor.get("bottom_left_drive");
         bottomRightDrive = hwMap.dcMotor.get("bottom_right_drive");
         //strafer = hwMap.dcMotor.get("strafing_drive");
         arm = hwMap.servo.get("Side_Arm");
         topLeftDrive.setDirection(DcMotor.Direction.REVERSE);
         topRightDrive.setDirection(DcMotor.Direction.FORWARD);
-        bottomLefttDrive.setDirection(DcMotor.Direction.REVERSE);
+        bottomLeftDrive.setDirection(DcMotor.Direction.REVERSE);
         bottomRightDrive.setDirection(DcMotor.Direction.FORWARD);
         //strafer.setDirection(DcMotor.Direction.FORWARD);
 
         // Set all motors to zero power
         topLeftDrive.setPower(0);
         topRightDrive.setPower(0);
+        bottomLeftDrive.setPower(0);
+        bottomRightDrive.setPower(0);
         //strafer.setPower(0);
 
         // Set all motors to run with encoders.
         topLeftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         topRightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        bottomRightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        bottomLeftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         //strafer.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 

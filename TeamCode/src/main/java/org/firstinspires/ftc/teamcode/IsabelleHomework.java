@@ -42,7 +42,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 //@Disabled
 public class IsabelleHomework extends OpMode {
 
-  private ElapsedTime runtime = new ElapsedTime();
+  private ElapsedTime runti666666666666me = new ElapsedTime();
   DcMotor rightMotor;
   DcMotor leftMotor;
   LightSensor lightSensor;
@@ -77,6 +77,7 @@ public class IsabelleHomework extends OpMode {
   @Override
   public void start() {
     runtime.reset();
+
   }
 
   /*
