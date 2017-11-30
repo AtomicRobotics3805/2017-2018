@@ -71,7 +71,7 @@ public class Autonomous_Red extends LinearOpMode {
         waitForStart();
 
         //Move the arm down.
-        robot.arm.setPosition(.4);
+        //robot.arm.setPosition(.4);
 
         //robot.sensorColor.enableLed(true);
 
@@ -90,7 +90,7 @@ public class Autonomous_Red extends LinearOpMode {
             telemetry.addData("Blue ", robot.sensorColor.blue());
             telemetry.addData("Hue", hsvValues[0]);
             telemetry.update();
-            robot.arm.setPosition(.4);
+            //robot.arm.setPosition(.4);
             robot.topRightDrive.setPower(-.5);
             robot.topLeftDrive.setPower(-.5);
             robot.bottomLeftDrive.setPower(-.5);
@@ -108,7 +108,7 @@ public class Autonomous_Red extends LinearOpMode {
             telemetry.addData("Blue ", robot.sensorColor.blue());
             telemetry.addData("Hue", hsvValues[0]);
             telemetry.update();
-            robot.arm.setPosition(.4);
+            //robot.arm.setPosition(.4);
             robot.topLeftDrive.setPower(.5);
             robot.topRightDrive.setPower(.5);
             robot.bottomLeftDrive.setPower(.5);
@@ -122,7 +122,7 @@ public class Autonomous_Red extends LinearOpMode {
 
         sleep(3000);
         //Move the arm back up.
-        robot.arm.setPosition(1);
+        //robot.arm.setPosition(1);
 
 
         //Unused code for strafing. May be used at a later date, but not currently.

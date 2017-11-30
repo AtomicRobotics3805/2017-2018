@@ -46,7 +46,7 @@ public class FnoblyHardware
     public DcMotor  bottomRightDrive  = null;
     public DcMotor  bottomLeftDrive  = null;
     //public DcMotor  strafer = null;
-    public Servo arm = null;
+    //public Servo arm = null;
     public ColorSensor sensorColor;
 
     /* Local OpMode members. */
@@ -70,7 +70,7 @@ public class FnoblyHardware
         bottomLeftDrive = hwMap.dcMotor.get("bottom_left_drive");
         bottomRightDrive = hwMap.dcMotor.get("bottom_right_drive");
         //strafer = hwMap.dcMotor.get("strafing_drive");
-        arm = hwMap.servo.get("Side_Arm");
+        //arm = hwMap.servo.get("Side_Arm");
         topLeftDrive.setDirection(DcMotor.Direction.REVERSE);
         topRightDrive.setDirection(DcMotor.Direction.FORWARD);
         bottomLeftDrive.setDirection(DcMotor.Direction.REVERSE);

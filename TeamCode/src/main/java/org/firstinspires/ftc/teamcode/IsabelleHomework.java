@@ -76,7 +76,7 @@ public class IsabelleHomework extends OpMode {
    */
   @Override
   public void start() {
-    runtime.reset();
+    //runtime.reset();
 
   }
 
@@ -86,7 +86,7 @@ public class IsabelleHomework extends OpMode {
    */
   @Override
   public void loop() {
-    telemetry.addData("Status", "Run Time: " + runtime.toString());
+    //telemetry.addData("Status", "Run Time: " + runtime.toString());
     //Your code here
     double lightValue =lightSensor.getLightDetected();
     if (lightValue <0.5){
