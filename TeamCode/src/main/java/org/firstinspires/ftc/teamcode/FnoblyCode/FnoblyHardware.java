@@ -41,12 +41,13 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 public class FnoblyHardware
 {
     /* Public OpMode members. */
-    public DcMotor  topLeftDrive   = null;
-    public DcMotor  topRightDrive  = null;
-    public DcMotor  bottomRightDrive  = null;
-    public DcMotor  bottomLeftDrive  = null;
-    //public DcMotor  strafer = null;
-    //public Servo arm = null;
+    public DcMotor  FL   = null;
+    public DcMotor  FR  = null;
+    public DcMotor  BR  = null;
+    public DcMotor  BL  = null;
+    public Servo grabber = null;
+    public Servo grabber2 = null;
+    public Servo arm = null;
     public ColorSensor sensorColor;
 
     /* Local OpMode members. */
@@ -65,31 +66,29 @@ public class FnoblyHardware
 
 
         sensorColor = hwMap.colorSensor.get("sensor");
-        topLeftDrive  = hwMap.dcMotor.get("top_left_drive");
-        topRightDrive = hwMap.dcMotor.get("top_right_drive");
-        bottomLeftDrive = hwMap.dcMotor.get("bottom_left_drive");
-        bottomRightDrive = hwMap.dcMotor.get("bottom_right_drive");
-        //strafer = hwMap.dcMotor.get("strafing_drive");
-        //arm = hwMap.servo.get("Side_Arm");
-        topLeftDrive.setDirection(DcMotor.Direction.REVERSE);
-        topRightDrive.setDirection(DcMotor.Direction.FORWARD);
-        bottomLeftDrive.setDirection(DcMotor.Direction.REVERSE);
-        bottomRightDrive.setDirection(DcMotor.Direction.FORWARD);
-        //strafer.setDirection(DcMotor.Direction.FORWARD);
+        FL  = hwMap.dcMotor.get("LF");
+        FR = hwMap.dcMotor.get("RF");
+        BL = hwMap.dcMotor.get("LB");
+        BR = hwMap.dcMotor.get("RB");
+        arm = hwMap.servo.get("Side_Arm");
+        grabber = hwMap.servo.get("grabberH");
+        grabber2 = hwMap.servo.get("grabberH2");
+        FL.setDirection(DcMotor.Direction.FORWARD);
+        FR.setDirection(DcMotor.Direction.REVERSE);
+        BL.setDirection(DcMotor.Direction.REVERSE);
+        BR.setDirection(DcMotor.Direction.FORWARD);
 
         // Set all motors to zero power
-        topLeftDrive.setPower(0);
-        topRightDrive.setPower(0);
-        bottomLeftDrive.setPower(0);
-        bottomRightDrive.setPower(0);
-        //strafer.setPower(0);
+        FL.setPower(0);
+        FR.setPower(0);
+        BL.setPower(0);
+        BR.setPower(0);
 
         // Set all motors to run with encoders.
-        topLeftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        topRightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        bottomRightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        bottomLeftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        //strafer.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        FL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        FR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        BL.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        BR.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
     public void waitForTick(long periodMs) {
