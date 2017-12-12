@@ -167,6 +167,7 @@ public class Autonomous_Blue extends LinearOpMode {
         robot.BL.setTargetPosition(bottomLeftEncoder+FOURTH_REV);
         robot.BR.setTargetPosition(bottomRightEncoder+FOURTH_REV);
 
+        //beep boop im a dummy
 
 
     }
