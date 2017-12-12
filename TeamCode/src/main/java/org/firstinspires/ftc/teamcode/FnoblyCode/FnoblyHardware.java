@@ -106,6 +106,6 @@ public class FnoblyHardware
 
         // Reset the cycle clock for the next pass.
         period.reset();
-        //update pls
+
     }
 }
