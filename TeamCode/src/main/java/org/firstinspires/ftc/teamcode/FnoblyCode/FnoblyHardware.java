@@ -47,6 +47,7 @@ public class FnoblyHardware
     public DcMotor  BL  = null;
     public Servo grabber = null;
     public Servo grabber2 = null;
+    DcMotor Raise;
     public Servo arm = null;
     public ColorSensor sensorColor;
 
@@ -73,6 +74,7 @@ public class FnoblyHardware
         arm = hwMap.servo.get("Side_Arm");
         grabber = hwMap.servo.get("grabberH");
         grabber2 = hwMap.servo.get("grabberH2");
+        Raise = hwMap.dcMotor.get("Raise_Motor");
         FL.setDirection(DcMotor.Direction.FORWARD);
         FR.setDirection(DcMotor.Direction.REVERSE);
         BL.setDirection(DcMotor.Direction.REVERSE);

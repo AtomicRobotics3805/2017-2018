@@ -10,8 +10,8 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 
-@Autonomous(name = "Autonomous_Red", group = "Competition_Code")
-public class Autonomous_Red extends LinearOpMode {
+@Autonomous(name = "Autonomous_Blue2", group = "Competition_Code")
+public class Autonomous_Blue2 extends LinearOpMode {
 
     //Assign the hardware code to the phrase "robot".
     FnoblyHardware robot = new FnoblyHardware();
@@ -24,7 +24,9 @@ public class Autonomous_Red extends LinearOpMode {
     private final int THREE_REV = 1613;
     private final int HALF_REV = 269;
     private final int FOURTH_REV = 134;
+    final static double grabGlyphL = .02;
     final static double releaseGlyphL = 0;
+    final static double grabGlyphR = .38;
     final static double releaseGlyphR = .41;
 
     //Set variables for encoder values.
@@ -51,6 +53,7 @@ public class Autonomous_Red extends LinearOpMode {
         robot.FR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.BL.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.BR.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        robot.Raise.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         //robot.strafer.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         //Set the motors to run to a position rather than just until a certain time.
@@ -58,6 +61,7 @@ public class Autonomous_Red extends LinearOpMode {
         robot.FR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.BL.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.BR.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.Raise.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         //robot.strafer.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         float hsvValues[] = {0F, 0F, 0F};
@@ -69,8 +73,12 @@ public class Autonomous_Red extends LinearOpMode {
         //Wait until the start button is pressed
         waitForStart();
 
-        robot.grabber.setPosition(releaseGlyphL);
-        robot.grabber2.setPosition(releaseGlyphR);
+        robot.grabber.setPosition(grabGlyphL);
+        robot.grabber2.setPosition(grabGlyphR);
+        sleep(500);
+        robot.Raise.setPower(1);
+        robot.Raise.setTargetPosition(-400);
+
 
         //Move the arm down.
         robot.arm.setPosition(.4);
@@ -85,7 +93,7 @@ public class Autonomous_Red extends LinearOpMode {
         sleep(3000);
 
         //Color sensor detects red or blue and moves accordingly to knock off the right jewel.
-        if (robot.sensorColor.red()>robot.sensorColor.blue() && opModeIsActive()) {
+        if (robot.sensorColor.blue()>robot.sensorColor.red() && opModeIsActive()) {
             telemetry.addData("Alpha", robot.sensorColor.alpha());
             telemetry.addData("Red  ", robot.sensorColor.red());
             telemetry.addData("Green", robot.sensorColor.green());
@@ -134,16 +142,16 @@ public class Autonomous_Red extends LinearOpMode {
         //Robot drives forward into the safe zone.
 
         //Set power to move forward.
-        robot.FL.setPower(.5);
-        robot.FR.setPower(.5);
-        robot.BL.setPower(.5);
-        robot.BR.setPower(.5);
+        robot.FL.setPower(-.5);
+        robot.FR.setPower(-.5);
+        robot.BL.setPower(-.5);
+        robot.BR.setPower(-.5);
 
         //Setting target, the robot will drive until the encoders read this value.
-        robot.FL.setTargetPosition(THREE_REV);
-        robot.FR.setTargetPosition(THREE_REV);
-        robot.BL.setTargetPosition(THREE_REV);
-        robot.BR.setTargetPosition(THREE_REV);
+        robot.FL.setTargetPosition(-THREE_REV);
+        robot.FR.setTargetPosition(-THREE_REV);
+        robot.BL.setTargetPosition(-THREE_REV);
+        robot.BR.setTargetPosition(-THREE_REV);
 
         //Keep the robot from moving on until it stops.
         while (robot.FL.isBusy() && robot.FR.isBusy() &&
@@ -156,19 +164,79 @@ public class Autonomous_Red extends LinearOpMode {
             telemetry.update();
         }
 
-
         //Save the current encoder values for later.
         topLeftEncoder = robot.FL.getCurrentPosition();
         topRightEncoder = robot.FR.getCurrentPosition();
         bottomLeftEncoder = robot.BL.getCurrentPosition();
         bottomRightEncoder = robot.BR.getCurrentPosition();
 
+        sleep(2000);
+
+        robot.FL.setTargetPosition(topLeftEncoder-824);
+        robot.FR.setTargetPosition(topRightEncoder+824);
+        robot.BL.setTargetPosition(bottomLeftEncoder+824);
+        robot.BR.setTargetPosition(bottomRightEncoder-824);
+
+        while (robot.FL.isBusy() && robot.FR.isBusy() &&
+                robot.BL.isBusy() && robot.BR.isBusy() && opModeIsActive()) {
+            //Shows the encoder readout while the robot is moving.
+            telemetry.addData("Top_Left_Encoder", robot.FL.getCurrentPosition());
+            telemetry.addData("Top_Right_Encoder", robot.FR.getCurrentPosition());
+            telemetry.addData("Bottom_Left_Encoder", robot.BL.getCurrentPosition());
+            telemetry.addData("Bottom_Right_Encoder", robot.BR.getCurrentPosition());
+            telemetry.update();
+        }
+
+        topLeftEncoder = robot.FL.getCurrentPosition();
+        topRightEncoder = robot.FR.getCurrentPosition();
+        bottomLeftEncoder = robot.BL.getCurrentPosition();
+        bottomRightEncoder = robot.BR.getCurrentPosition();
+
+        sleep(2000);
+
+        robot.FL.setTargetPosition(topLeftEncoder+ONE_REV);
+        robot.FR.setTargetPosition(topRightEncoder+ONE_REV);
+        robot.BL.setTargetPosition(bottomLeftEncoder+ONE_REV);
+        robot.BR.setTargetPosition(bottomRightEncoder+ONE_REV);
+
+        while (robot.FL.isBusy() && robot.FR.isBusy() &&
+                robot.BL.isBusy() && robot.BR.isBusy() && opModeIsActive()) {
+            //Shows the encoder readout while the robot is moving.
+            telemetry.addData("Top_Left_Encoder", robot.FL.getCurrentPosition());
+            telemetry.addData("Top_Right_Encoder", robot.FR.getCurrentPosition());
+            telemetry.addData("Bottom_Left_Encoder", robot.BL.getCurrentPosition());
+            telemetry.addData("Bottom_Right_Encoder", robot.BR.getCurrentPosition());
+            telemetry.update();
+        }
+
+        topLeftEncoder = robot.FL.getCurrentPosition();
+        topRightEncoder = robot.FR.getCurrentPosition();
+        bottomLeftEncoder = robot.BL.getCurrentPosition();
+        bottomRightEncoder = robot.BR.getCurrentPosition();
+
+        sleep(2000);
+
+        robot.grabber.setPosition(releaseGlyphL);
+        robot.grabber2.setPosition(releaseGlyphR);
+
+        sleep(1000);
+
         robot.FL.setTargetPosition(topLeftEncoder-FOURTH_REV);
         robot.FR.setTargetPosition(topRightEncoder-FOURTH_REV);
         robot.BL.setTargetPosition(bottomLeftEncoder-FOURTH_REV);
         robot.BR.setTargetPosition(bottomRightEncoder-FOURTH_REV);
 
+        while (robot.FL.isBusy() && robot.FR.isBusy() &&
+                robot.BL.isBusy() && robot.BR.isBusy() && opModeIsActive()) {
+            //Shows the encoder readout while the robot is moving.
+            telemetry.addData("Top_Left_Encoder", robot.FL.getCurrentPosition());
+            telemetry.addData("Top_Right_Encoder", robot.FR.getCurrentPosition());
+            telemetry.addData("Bottom_Left_Encoder", robot.BL.getCurrentPosition());
+            telemetry.addData("Bottom_Right_Encoder", robot.BR.getCurrentPosition());
+            telemetry.update();
+        }
 
 
-     }
+
+    }
 }
