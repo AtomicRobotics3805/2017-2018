@@ -75,9 +75,9 @@ public class Autonomous_Red2 extends LinearOpMode {
 
         robot.grabber.setPosition(grabGlyphL);
         robot.grabber2.setPosition(grabGlyphR);
-        sleep(500);
+        sleep(1000);
         robot.Raise.setPower(1);
-        robot.Raise.setTargetPosition(-400);
+        robot.Raise.setTargetPosition(-450);
 
 
         //Move the arm down.

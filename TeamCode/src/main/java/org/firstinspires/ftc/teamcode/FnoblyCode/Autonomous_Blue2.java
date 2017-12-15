@@ -21,7 +21,7 @@ public class Autonomous_Blue2 extends LinearOpMode {
     //We don't want to change these, so they are final.
     private final int ONE_REV = 537;
     private final int TWO_REV = 1075;
-    private final int THREE_REV = 1613;
+    private final int THREE_REV = 1652;
     private final int HALF_REV = 269;
     private final int FOURTH_REV = 134;
     final static double grabGlyphL = .02;
@@ -75,9 +75,9 @@ public class Autonomous_Blue2 extends LinearOpMode {
 
         robot.grabber.setPosition(grabGlyphL);
         robot.grabber2.setPosition(grabGlyphR);
-        sleep(500);
+        sleep(1000);
         robot.Raise.setPower(1);
-        robot.Raise.setTargetPosition(-400);
+        robot.Raise.setTargetPosition(-450);
 
 
         //Move the arm down.
@@ -172,10 +172,10 @@ public class Autonomous_Blue2 extends LinearOpMode {
 
         sleep(2000);
 
-        robot.FL.setTargetPosition(topLeftEncoder-824);
-        robot.FR.setTargetPosition(topRightEncoder+824);
-        robot.BL.setTargetPosition(bottomLeftEncoder+824);
-        robot.BR.setTargetPosition(bottomRightEncoder-824);
+        robot.FL.setTargetPosition(topLeftEncoder+805);
+        robot.FR.setTargetPosition(topRightEncoder-805);
+        robot.BL.setTargetPosition(bottomLeftEncoder-805);
+        robot.BR.setTargetPosition(bottomRightEncoder+805);
 
         while (robot.FL.isBusy() && robot.FR.isBusy() &&
                 robot.BL.isBusy() && robot.BR.isBusy() && opModeIsActive()) {
