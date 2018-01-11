@@ -31,6 +31,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.robotcontroller.external.samples.ConceptVuforiaNavigation;
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
@@ -66,10 +67,14 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
  * is explained in {@link ConceptVuforiaNavigation}.
  */
 
-@Autonomous(name="Concept: VuMark Id", group ="Concept")
+@Autonomous(name="Hadi's Vuforia")
 //@Disabled
 public class HadiVuMark extends LinearOpMode {
 
+    DcMotor rightFront;
+    DcMotor rightBack;
+    DcMotor leftFront;
+    DcMotor leftBack;
     public static final String TAG = "Vuforia VuMark Sample";
 
     OpenGLMatrix lastLocation = null;
@@ -81,7 +86,10 @@ public class HadiVuMark extends LinearOpMode {
     VuforiaLocalizer vuforia;
 
     @Override public void runOpMode() {
-
+        rightFront = hardwareMap.dcMotor.get("RF");
+        rightBack = hardwareMap.dcMotor.get("RB");
+        leftFront = hardwareMap.dcMotor.get("LF");
+        leftBack = hardwareMap.dcMotor.get("LB");
         /*
          * To start up Vuforia, tell it the view that we wish to use for camera monitor (on the RC phone);
          * If no camera monitor is desired, use the parameterless constructor instead (commented out below).
@@ -129,8 +137,13 @@ public class HadiVuMark extends LinearOpMode {
         waitForStart();
 
         relicTrackables.activate();
+        RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(relicTemplate);
+        while (opModeIsActive()&&vuMark == RelicRecoveryVuMark.UNKNOWN) {
+            vuMark = RelicRecoveryVuMark.from(relicTemplate);
+            telemetry.addData("1","in unknown loop");
+            telemetry.update();
 
-        while (opModeIsActive()) {
+        }
 
             /**
              * See if any of the instances of {@link relicTemplate} are currently visible.
@@ -138,7 +151,7 @@ public class HadiVuMark extends LinearOpMode {
              * UNKNOWN, LEFT, CENTER, and RIGHT. When a VuMark is visible, something other than
              * UNKNOWN will be returned by {@link RelicRecoveryVuMark#from(VuforiaTrackable)}.
              */
-            RelicRecoveryVuMark vuMark = RelicRecoveryVuMark.from(relicTemplate);
+
             if (vuMark != RelicRecoveryVuMark.UNKNOWN) {
 
                 /* Found an instance of the template. In the actual game, you will probably
@@ -174,7 +187,30 @@ public class HadiVuMark extends LinearOpMode {
             }
 
             telemetry.update();
-        }
+            if (vuMark == RelicRecoveryVuMark.CENTER){
+                rightFront.setPower(1);
+                rightBack.setPower(1);
+                leftFront.setPower(1);
+                leftBack.setPower(1);
+                telemetry.addData("CENTER IS WORKING",vuMark);
+            }
+            if (vuMark == RelicRecoveryVuMark.LEFT){
+                rightFront.setPower(-1);
+                rightBack.setPower(-1);
+                leftFront.setPower(-1);
+                leftBack.setPower(-1);
+            telemetry.addData("LEFT IS WORKING",vuMark);
+            }
+            if (vuMark == RelicRecoveryVuMark.RIGHT){
+                rightFront.setPower(-1);
+                rightBack.setPower(1);
+                leftFront.setPower(1);
+                leftBack.setPower(-1);
+            telemetry.addData("RIGHT IS WORKING",vuMark);
+            }
+
+
+
     }
 
     String format(OpenGLMatrix transformationMatrix) {
