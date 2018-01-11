@@ -86,7 +86,7 @@ public class Autonomous_Blue extends LinearOpMode {
                 (int) (robot.sensorColor.blue() * SCALE_FACTOR),
                 hsvValues);
 
-        sleep(3000);
+        sleep(2000);
 
         //Color sensor detects red or blue and moves accordingly to knock off the right jewel.
         if (robot.sensorColor.blue()>robot.sensorColor.red() && opModeIsActive()) {
@@ -168,6 +168,7 @@ public class Autonomous_Blue extends LinearOpMode {
 
         sleep(2000);
 
+        //The robot turns to face the glyph scoring area.
         robot.FL.setTargetPosition(topLeftEncoder-1648);
         robot.FR.setTargetPosition(topRightEncoder+1648);
         robot.BL.setTargetPosition(bottomLeftEncoder+1648);
